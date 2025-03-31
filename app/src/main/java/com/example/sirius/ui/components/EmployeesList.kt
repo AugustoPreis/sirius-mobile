@@ -23,13 +23,14 @@ import androidx.compose.ui.unit.sp
 import com.example.sirius.models.Employee
 import com.example.sirius.ui.screens.Home
 import com.example.sirius.ui.theme.SiriusTheme
+import java.time.LocalDate
 
 @Composable
 fun EmployeesList() {
   val funcionarios = listOf(
-    Employee(1, "Augusto Preis Tomasi da Silva", "Vendedor", 10),
-    Employee(2, "Lucas Barbosa", "Vendedor", 12),
-    Employee(3, "Júlia dos Santos da Silva", "Vendedor (Balcão)", 20),
+    Employee(1, "Augusto Preis Tomasi da Silva", LocalDate.now(), "Vendedor", "", 10),
+    Employee(2, "Lucas Barbosa", LocalDate.now(), "Vendedor", "", 12),
+    Employee(3, "Júlia dos Santos da Silva", LocalDate.now(), "Vendedor (Balcão)", "", 20),
   )
 
   Column(
@@ -46,41 +47,41 @@ fun EmployeesList() {
 @Composable
 fun EmployeeCard(employee: Employee) {
   CardElevated {
-      Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-          .fillMaxWidth(),
-      ) {
-        Column(modifier = Modifier.weight(1f)) {
-          Text(
-            employee.name,
-            fontSize = 24.sp,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-          )
-        }
-
-        Icon(
-          imageVector = Icons.Filled.Info,
-          contentDescription = "Info",
-        )
-      }
-
-      Row {
-        Text(employee.position)
-      }
-
-      Spacer(modifier = Modifier.height(24.dp))
-
-      Row(verticalAlignment = Alignment.Bottom) {
+    Row(
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .fillMaxWidth(),
+    ) {
+      Column(modifier = Modifier.weight(1f)) {
         Text(
-          employee.quantity.toString(),
+          employee.name,
           fontSize = 24.sp,
-          fontWeight = FontWeight.ExtraBold,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis,
         )
-        Text(" atendimentos realizados")
       }
+
+      Icon(
+        imageVector = Icons.Filled.Info,
+        contentDescription = "Info",
+      )
+    }
+
+    Row {
+      Text(employee.position)
+    }
+
+    Spacer(modifier = Modifier.height(24.dp))
+
+    Row(verticalAlignment = Alignment.Bottom) {
+      Text(
+        employee.quantity.toString(),
+        fontSize = 24.sp,
+        fontWeight = FontWeight.ExtraBold,
+      )
+      Text(" atendimentos realizados")
+    }
   }
 }
 
