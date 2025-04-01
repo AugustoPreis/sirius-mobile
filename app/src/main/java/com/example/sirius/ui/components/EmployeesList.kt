@@ -1,5 +1,6 @@
 package com.example.sirius.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +27,7 @@ import com.example.sirius.ui.theme.SiriusTheme
 import java.time.LocalDate
 
 @Composable
-fun EmployeesList() {
+fun EmployeesList(onEmployeeInfo: (id: Int) -> Unit) {
   val funcionarios = listOf(
     Employee(1, "Augusto Preis Tomasi da Silva", LocalDate.now(), "Vendedor", "", 10),
     Employee(2, "Lucas Barbosa", LocalDate.now(), "Vendedor", "", 12),
@@ -39,13 +40,13 @@ fun EmployeesList() {
       .verticalScroll(rememberScrollState())
   ) {
     funcionarios.forEach {
-      EmployeeCard(it)
+      EmployeeCard(it, onEmployeeInfo)
     }
   }
 }
 
 @Composable
-fun EmployeeCard(employee: Employee) {
+fun EmployeeCard(employee: Employee, onEmployeeInfo: (id: Int) -> Unit) {
   CardElevated {
     Row(
       horizontalArrangement = Arrangement.SpaceBetween,
@@ -65,6 +66,10 @@ fun EmployeeCard(employee: Employee) {
       Icon(
         imageVector = Icons.Filled.Info,
         contentDescription = "Info",
+        modifier = Modifier
+          .clickable {
+            onEmployeeInfo(employee.id)
+          }
       )
     }
 
@@ -89,6 +94,6 @@ fun EmployeeCard(employee: Employee) {
 @Preview(showBackground = true)
 fun EmployeesListPreview() {
   SiriusTheme {
-    Home()
+    Home({}, {})
   }
 }

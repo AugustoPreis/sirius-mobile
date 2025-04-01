@@ -17,7 +17,10 @@ import com.example.sirius.ui.components.ScreenContainer
 import com.example.sirius.ui.theme.SiriusTheme
 
 @Composable
-fun Home() {
+fun Home(
+  onMoreFilters: () -> Unit,
+  onEmployeeInfo: (id: Int) -> Unit,
+) {
   ScreenContainer(verticalArrangement = Arrangement.Top) {
     OutlinedTextField(
       value = "",
@@ -29,7 +32,7 @@ fun Home() {
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    Button("Mais filtros", onClick = {})
+    Button("Mais filtros", onClick = onMoreFilters)
 
     Spacer(modifier = Modifier.height(32.dp))
 
@@ -37,7 +40,7 @@ fun Home() {
 
     Spacer(modifier = Modifier.height(24.dp))
 
-    EmployeesList()
+    EmployeesList(onEmployeeInfo)
   }
 }
 
@@ -45,6 +48,6 @@ fun Home() {
 @Preview(showBackground = true)
 fun HomePreview() {
   SiriusTheme {
-    Home()
+    Home({}, {})
   }
 }

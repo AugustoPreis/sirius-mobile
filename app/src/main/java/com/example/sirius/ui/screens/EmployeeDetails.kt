@@ -31,9 +31,14 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun EmployeeDetails(employee: Employee) {
+fun EmployeeDetails(
+  id: Int,
+  onBack: () -> Unit,
+) {
+  val employee = Employee(id, "Augusto Preis Tomasi da Silva", LocalDate.now(), "Vendedor", "", 10)
+
   ScreenContainer(verticalArrangement = Arrangement.Top) {
-    Button("Voltar", onClick = {})
+    Button("Voltar", onClick = onBack)
 
     Spacer(modifier = Modifier.height(16.dp))
 
@@ -105,15 +110,6 @@ fun EmployeeDetails(employee: Employee) {
 @Preview(showBackground = true)
 fun EmployeeDetailsPreview() {
   SiriusTheme {
-    EmployeeDetails(
-      Employee(
-        82712,
-        "Augusto Preis Tomasi",
-        LocalDate.now(),
-        "Vendedor",
-        "",
-        10,
-      ),
-    )
+    EmployeeDetails(1) {}
   }
 }

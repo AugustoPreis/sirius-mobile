@@ -18,7 +18,9 @@ import com.example.sirius.ui.components.ScreenContainer
 import com.example.sirius.ui.theme.SecondaryBlue
 
 @Composable
-fun PasswordReset() {
+fun PasswordReset(
+  onBack: () -> Unit,
+) {
   ScreenContainer {
     Text(
       text = "Informe a nova senha",
@@ -48,14 +50,14 @@ fun PasswordReset() {
 
     Button(
       text = "Confirmar",
-      onClick = { },
+      onClick = onBack,
     )
 
     Spacer(modifier = Modifier.height(16.dp))
 
     Button(
       text = "Cancelar Redefinição",
-      onClick = { },
+      onClick = onBack,
       buttonColor = SecondaryBlue,
     )
   }
@@ -64,5 +66,5 @@ fun PasswordReset() {
 @Composable
 @Preview(showBackground = true)
 fun PasswordResetPreview() {
-  PasswordReset()
+  PasswordReset {}
 }

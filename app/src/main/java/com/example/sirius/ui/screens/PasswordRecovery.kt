@@ -19,7 +19,9 @@ import com.example.sirius.ui.theme.SecondaryBlue
 import com.example.sirius.ui.theme.SiriusTheme
 
 @Composable
-fun PasswordRecovery() {
+fun PasswordRecovery(
+  onBack: () -> Unit,
+) {
   ScreenContainer {
     Text(
       text = "Informe seu Email",
@@ -49,14 +51,14 @@ fun PasswordRecovery() {
 
     Button(
       text = "Enviar Link de Redefinição",
-      onClick = { },
+      onClick = onBack,
     )
 
     Spacer(modifier = Modifier.height(16.dp))
 
     Button(
-      text = "Voltar para o Login",
-      onClick = { },
+      text = "Voltar",
+      onClick = onBack,
       buttonColor = SecondaryBlue,
     )
   }
@@ -66,6 +68,6 @@ fun PasswordRecovery() {
 @Preview(showBackground = true)
 fun PasswordRecoveryPreview() {
   SiriusTheme {
-    PasswordRecovery()
+    PasswordRecovery {}
   }
 }

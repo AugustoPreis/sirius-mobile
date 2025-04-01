@@ -1,6 +1,7 @@
 package com.example.sirius.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,7 +19,10 @@ import com.example.sirius.ui.theme.SecondaryBlue
 import com.example.sirius.ui.theme.SiriusTheme
 
 @Composable
-fun Login() {
+fun Login(
+  onLogin: () -> Unit,
+  onPasswordRecovery: () -> Unit,
+) {
   ScreenContainer {
     Image(
       painter = painterResource(id = R.drawable.sirius_logo),
@@ -51,12 +55,13 @@ fun Login() {
       "Esqueci minha senha",
       color = SecondaryBlue,
       modifier = Modifier
-        .fillMaxWidth(),
+        .fillMaxWidth()
+        .clickable { onPasswordRecovery() },
     )
 
     Spacer(modifier = Modifier.height(32.dp))
 
-    Button("Entrar", onClick = {})
+    Button("Entrar", onClick = onLogin)
   }
 }
 
@@ -64,6 +69,6 @@ fun Login() {
 @Preview(showBackground = true)
 fun LoginPreview() {
   SiriusTheme {
-    Login()
+    Login({}, {})
   }
 }

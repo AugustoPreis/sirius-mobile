@@ -26,7 +26,9 @@ import com.example.sirius.ui.theme.SiriusTheme
 import com.example.sirius.ui.theme.TertiaryBlue
 
 @Composable
-fun HomeFilter() {
+fun HomeFilter(
+  onBack: () -> Unit,
+) {
   ScreenContainer(verticalArrangement = Arrangement.Top) {
     Row {
       Column(
@@ -34,7 +36,7 @@ fun HomeFilter() {
           .weight(0.5f)
           .padding(end = 8.dp),
       ) {
-        Button("Cancelar", onClick = {}, buttonColor = SecondaryBlue)
+        Button("Cancelar", onClick = onBack, buttonColor = SecondaryBlue)
       }
 
       Column(
@@ -42,7 +44,7 @@ fun HomeFilter() {
           .weight(0.5f)
           .padding(start = 8.dp),
       ) {
-        Button("Confirmar", onClick = {})
+        Button("Confirmar", onClick = onBack)
       }
     }
 
@@ -170,6 +172,6 @@ fun CardFilter(name: String, content: @Composable (RowScope.() -> Unit)) {
 @Preview(showBackground = true)
 fun HomeFilterPreview() {
   SiriusTheme {
-    HomeFilter()
+    HomeFilter {}
   }
 }
